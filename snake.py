@@ -34,7 +34,9 @@ def drawGrid(w, rows, surface):
     pass
 
 def redrawWindow(surface):
-    pass
+    win.fill((0,0,0))
+    drawGrid(surface)
+    pygame.display.update()
 
 def randomSnack(rows, items):
     pass
