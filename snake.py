@@ -68,7 +68,11 @@ class snake(object):
         pass
 
     def draw(self, surface):
-        pass
+        for i, c in enumerate(self.body):
+            if i == 0:
+                c.draw(surface, True)
+            else:
+                c.draw(surface)
 
 def drawGrid(w, rows, surface):
     sizeBtwn = w // rows
@@ -82,7 +86,8 @@ def drawGrid(w, rows, surface):
         pygame.draw.line(surface, (255,255,255), (0,y), (w,y))
 
 def redrawWindow(surface):
-    global rows, width
+    global rows, width, s
+    s.draw(surface)
     surface.fill((0,0,0))
     drawGrid(width, rows, surface)
     pygame.display.update()
@@ -94,7 +99,7 @@ def message_box(subject, content):
     pass
 
 def main():
-    global width, rows
+    global width, rows, s
     width = 500
     rows = 20
     win = pygame.display.set_mode((width, width))
