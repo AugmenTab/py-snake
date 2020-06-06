@@ -14,7 +14,7 @@ class cube(object):
     def move(self, dirnx, dirny):
         self.dirnx = dirnx
         self.dirny = dirny
-        self.pos(self.pos[0] + self.dirnx, self.pos[1] + self.dirny)
+        self.pos = (self.pos[0] + self.dirnx, self.pos[1] + self.dirny)
     
     def draw(self, surface, eyes=False):
         dis = self.w // self.rows
@@ -110,8 +110,17 @@ def redrawWindow(surface):
     drawGrid(width, rows, surface)
     pygame.display.update()
 
-def randomSnack(rows, items):
-    pass
+def randomSnack(rows, item):
+    global rows
+    positions = item.body
+    while True:
+        x = random.randrange(rows)
+        y = random.randrange(rows)
+        if len(list(filter(lambda z:z.pos == (x,y), positions))) > 0:
+            continue
+        else:
+            break
+    return (x,y)
 
 def message_box(subject, content):
     pass
@@ -129,7 +138,7 @@ def main():
     while flag:
         pygame.time.delay(50)
         clock.tick(10)
-
+        s.move()
         redrawWindow(win)
     pass
 
